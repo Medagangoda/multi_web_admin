@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:multi_web_admin/views/screens/side_bar_screens/dashborad_screen.dart';
+import 'package:multi_web_admin/views/screens/side_bar_screens/vendors_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,6 +12,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  Widget _selectItem = DashboradScreen();
+
+  
   @override
   Widget build(BuildContext context) {
     return AdminScaffold(
@@ -22,12 +27,12 @@ class _MainScreenState extends State<MainScreen> {
           AdminMenuItem(
             title: 'Dashboard',
             icon: Icons.dashboard,
-            route: '/',
+            route: DashboradScreen.routeName,
           ),
           AdminMenuItem(
             title: 'Vendors',
             icon: CupertinoIcons.person_3,
-            route: '/',
+            route: VendorsScreen.routeName,
           ),
           AdminMenuItem(
             title: 'Withdrawal',
@@ -55,6 +60,7 @@ class _MainScreenState extends State<MainScreen> {
             route: '/',
           ),
         ], selectedRoute: ''),
-        body: Text('Dashbord'));
+        body: _selectItem
+      );
   }
 }
