@@ -73,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
     return AdminScaffold(
       backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.yellow.shade900,
+          backgroundColor: Color.fromARGB(255, 6, 141, 182),
           title: Text('Management'),
         ),
         sideBar: SideBar(items: [
@@ -116,7 +116,36 @@ class _MainScreenState extends State<MainScreen> {
         onSelected: (item) {
           screenSlectors(item);
         },
+
+        header: Container(
+          height: 50,
+          width: double.infinity,
+          color: const Color(0xff444444),
+          child: const Center(
+            child: Text(
+              'header',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+
+        footer: Container(
+          height: 50,
+          width: double.infinity,
+          color: const Color(0xff444444),
+          child: const Center(
+            child: Text(
+              'footer',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
       ),
+      
       body: _selectItem);
   }
 }
