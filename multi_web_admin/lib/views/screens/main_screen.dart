@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:multi_web_admin/views/screens/side_bar_screens/categories_screen.dart';
 import 'package:multi_web_admin/views/screens/side_bar_screens/dashborad_screen.dart';
+import 'package:multi_web_admin/views/screens/side_bar_screens/order_screen.dart';
+import 'package:multi_web_admin/views/screens/side_bar_screens/products_screen.dart';
+import 'package:multi_web_admin/views/screens/side_bar_screens/upload_banner_screen.dart';
 import 'package:multi_web_admin/views/screens/side_bar_screens/vendors_screen.dart';
+import 'package:multi_web_admin/views/screens/side_bar_screens/withdrawal_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -13,6 +18,54 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   Widget _selectItem = DashboradScreen();
+
+  screenSlectors(item) {
+    switch (item.route) {
+      case DashboradScreen.routeName:
+      setState(() {
+        _selectItem = DashboradScreen();
+      });
+      break;
+
+      case VendorsScreen.routeName:
+      setState(() {
+        _selectItem = VendorsScreen();
+      });
+      break;
+
+      case WithdrawalScreen.routeName:
+      setState(() {
+        _selectItem = WithdrawalScreen();
+      });
+      break;
+
+      case OrderScreen.routeName:
+      setState(() {
+        _selectItem = OrderScreen();
+      });
+      break;
+
+      case CategoriesScreen.routeName:
+      setState(() {
+        _selectItem = CategoriesScreen();
+      });
+      break;
+
+      case ProductsScreen.routeName:
+      setState(() {
+        _selectItem = ProductsScreen();
+      });
+      break;
+
+      case UploadBannerScreen.routeName:
+      setState(() {
+        _selectItem = UploadBannerScreen();
+      });
+      break;
+
+
+    }
+  }
 
   
   @override
@@ -37,30 +90,33 @@ class _MainScreenState extends State<MainScreen> {
           AdminMenuItem(
             title: 'Withdrawal',
             icon: CupertinoIcons.money_dollar,
-            route: '/',
+            route: WithdrawalScreen.routeName,
           ),
           AdminMenuItem(
             title: 'Orders',
             icon: CupertinoIcons.shopping_cart,
-            route: '/',
+            route: OrderScreen.routeName,
           ),
           AdminMenuItem(
             title: ' Categories',
             icon: Icons.category,
-            route: '/',
+            route: CategoriesScreen.routeName,
           ),
           AdminMenuItem(
             title: 'Product',
             icon: Icons.shop,
-            route: '/',
+            route: ProductsScreen.routeName,
           ),
           AdminMenuItem(
             title: 'Upload Banner',
             icon: CupertinoIcons.add,
-            route: '/',
+            route: UploadBannerScreen.routeName,
           ),
-        ], selectedRoute: ''),
-        body: _selectItem
-      );
+        ], selectedRoute: '',
+        onSelected: (item) {
+          screenSlectors(item);
+        },
+      ),
+      body: _selectItem);
   }
 }
