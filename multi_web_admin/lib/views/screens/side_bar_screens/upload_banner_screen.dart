@@ -3,6 +3,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:multi_web_admin/views/screens/side_bar_screens/widgets/banner_widget.dart';
 
 class UploadBannerScreen extends StatefulWidget {
   static const String routeName = '\UploadBannerScreen';
@@ -34,7 +35,7 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
   }
 
   _uploadBannersToStorage(dynamic image) async {
-    Reference ref =_storage.ref().child('Banners').child(fileName!);
+    Reference ref =_storage.ref().child('banners').child(fileName!);
 
     UploadTask uploadTask = ref.putData(image);
 
@@ -48,7 +49,7 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
     if(_image!=null){
       String imageUrl = await _uploadBannersToStorage(_image);
 
-      await _firestore.collection('banner').doc(fileName).set({
+      await _firestore.collection('banners').doc(fileName).set({
         'image': imageUrl,}).whenComplete(() {
           EasyLoading.dismiss();
 
@@ -125,7 +126,28 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
                 child: Text('save'),
               ),
             ],
-          )
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(color: Colors.grey,),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Banners",
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+          ),
+
+          BannerWidget(),
         ],
       ),
     );
