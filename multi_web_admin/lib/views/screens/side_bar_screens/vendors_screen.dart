@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_web_admin/views/screens/side_bar_screens/widgets/vendor_widget.dart';
 
 class VendorsScreen extends StatelessWidget {
   static const String routeName = '\VendorsScreen';
@@ -47,7 +48,9 @@ class VendorsScreen extends StatelessWidget {
               _rowHeader('ACTION', 1),
               _rowHeader('VIEW MORE', 1),
             ],
-          )
+          ),
+
+          VendorWidget(),
         ],
       ),
     );
